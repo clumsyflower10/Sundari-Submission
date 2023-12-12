@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import HomeNavBar from "./Components/HomeNavBar";
+import HomePage from "./Pages/HomePage";
+import AboutPage from "./Pages/AboutPage";
+import ServicesPage from "./Pages/ServicesPage";
+import TeamPage from "./Pages/TeamPage";
+import ContactPage from "./Pages/ContactPage";
+import ReviewsPage from "./Pages/ReviewsPage";
+import NotFoundPage from "./Pages/NotFoundPage";
 
 function App() {
+  let component;
+  switch (window.location.pathname) {
+    case "/":
+      component = <HomePage />;
+      break;
+    case "/About":
+      component = <AboutPage />;
+      break;
+    case "/Services":
+      component = <ServicesPage />;
+      break;
+    case "/Team":
+      component = <TeamPage />;
+      break;
+    case "/Reviews":
+      component = <ReviewsPage />;
+      break;
+    case "/Contact":
+      component = <ContactPage />;
+      break;
+    default:
+      component = <NotFoundPage />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HomeNavBar />
+      {component}
+    </>
   );
 }
 
